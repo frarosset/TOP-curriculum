@@ -142,6 +142,13 @@ You might be feeling overwhelmed at this point, so let's recap what we've learne
 
 1. Read the chapter on [Reset covered by git-scm](https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified) for a deeper dive into `git reset`.
 
+1. Have a look at this [answer to this question from Stack Overflow](https://stackoverflow.com/a/29916361) for a further explanation of the syntax for `git rebase <branch>` and `git rebase --onto`. Rebasing can be simply explained as *changing the parent* of the first commit in a *specific range of commits* (specified by the command parameters). Pay attention to this [comment](https://stackoverflow.com/questions/29914052/how-to-git-rebase-a-branch-with-the-onto-command#comment96330391_29916361), this [comment](https://stackoverflow.com/questions/29914052/how-to-git-rebase-a-branch-with-the-onto-command#comment98907256_29916361), and this [answer](https://stackoverflow.com/a/52984628),  too. 
+
+   Basically, the generic form of this command is `git rebase --onto <newparent> <oldparent> <until>`, which means:  move to/*rebase on top of* `<newparent>` anything reachable from `<until>` that is not reachable from `<oldparent>`. Note that `<newparent>`, `<oldparent>`, and `<until>` can be a specific commits, or branch references.
+   - When `<oldparent>` and `<until>` are in the same branch, you simply rebase the range of commits from `<oldparent>` (excluded)  to `<until>` (included) on top of `<newparent>`.
+   - When `<until>` is omitted, it defaults to `HEAD`.
+   - When `--onto <newparent>` is omitted, it defaults to `--onto <oldparent>`.
+
 </div>
 
 ### Knowledge check
